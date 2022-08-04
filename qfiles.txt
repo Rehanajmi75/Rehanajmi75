@@ -7,3 +7,13 @@ CASE WHEN statuspaketkonsolidasi = 'PaketKonsolidasi' THEN 1 ELSE 0 END as statu
 jumlahpagu as jumlah_pagu
 FROM raw_lkpp.isb_paket_penyedia_opt_1618
 WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 1 AND statusdeletepaket = 0;
+
+--datamart_lkpp.prep_perencanaan_swakelol;
+SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
+MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
+YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
+0 as  status_pdn,
+0 as status_konsolidasi,
+jumlahpagu as jumlah_pagu
+FROM raw_lkpp.isb_paket_swakelola_opt_1618
+WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 'true' AND statusdeletepaket = 'false';
