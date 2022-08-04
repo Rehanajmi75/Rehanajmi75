@@ -1,4 +1,4 @@
---datamart_lkpp.prep_perencanaan_penyedia--
+--datamart_lkpp.prep_perencanaan_penyedia;
 SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
 MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
 YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
