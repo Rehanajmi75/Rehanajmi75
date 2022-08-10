@@ -17,3 +17,1301 @@ YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
 jumlahpagu as jumlah_pagu
 FROM raw_lkpp.isb_paket_swakelola_opt_1618
 WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 'true' AND statusdeletepaket = 'false';
+
+--staging_lkpp.prep_perencanaan_penyedia(new);
+SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
+MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
+YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
+CASE WHEN statuspdn = 'PDN' THEN 1 ELSE 0 END status_pdn,
+CASE WHEN statuspaketkonsolidasi = 'PaketKonsolidasi' THEN 1 ELSE 0 END as status_konsolidasi,
+jumlahpagu as jumlah_pagu
+FROM raw_lkpp.isb_paket_penyedia_opt_1618
+WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 1 AND statusdeletepaket = 0;
+
+--staging_lkpp.prep_perencanaan_swakelola;
+SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
+MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
+YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
+0 as  status_pdn,
+0 as status_konsolidasi,
+jumlahpagu as jumlah_pagu
+FROM raw_lkpp.isb_paket_swakelola_opt_1618
+WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 'true' AND statusdeletepaket = 'false';
+
+--staging_lkpp.prep_perencanaan_penyedia(new);
+SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
+MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
+YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
+CASE WHEN statuspdn = 'PDN' THEN 1 ELSE 0 END status_pdn,
+CASE WHEN statuspaketkonsolidasi = 'PaketKonsolidasi' THEN 1 ELSE 0 END as status_konsolidasi,
+jumlahpagu as jumlah_pagu
+FROM raw_lkpp.isb_paket_penyedia_opt_1618
+WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 1 AND statusdeletepaket = 0;
+
+--staging_lkpp.prep_perencanaan_swakelola;
+SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
+MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
+YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
+0 as  status_pdn,
+0 as status_konsolidasi,
+jumlahpagu as jumlah_pagu
+FROM raw_lkpp.isb_paket_swakelola_opt_1618
+WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 'true' AND statusdeletepaket = 'false';
+
+--staging_lkpp.prep_perencanaan_penyedia;
+SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
+MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
+YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
+CASE WHEN statuspdn = 'PDN' THEN 1 ELSE 0 END status_pdn,
+CASE WHEN statuspaketkonsolidasi = 'PaketKonsolidasi' THEN 1 ELSE 0 END as status_konsolidasi,
+jumlahpagu as jumlah_pagu
+FROM raw_lkpp.isb_paket_penyedia_opt_1618
+WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 1 AND statusdeletepaket = 0;
+
+--staging_lkpp.prep_perencanaan_swakelola;
+SELECT DISTINCT kd_klpd as kode_klpd_sirup,idsatker as id_satker_sirup,tahunanggaran as tahun_anggaran, idrup as kode_rup,
+MONTH(CAST(tanggalakhirpekerjaan  AS datetime)) as bln_komitmen,
+YEAR(CAST(tanggalakhirpekerjaan  AS datetime)) as thn_komitmen,
+0 as  status_pdn,
+0 as status_konsolidasi,
+jumlahpagu as jumlah_pagu
+FROM raw_lkpp.isb_paket_swakelola_opt_1618
+WHERE UPPER(statusumumkan) ='TERUMUMKAN' AND statusaktifpaket = 'true' AND statusdeletepaket = 'false';
+
+--staging_lkpp.prep_perencanaan_siswas;
+SELECT * FROM raw_lkpp.siswas_perencanaan WHERE tahun_anggaran=2022 AND LEFT(kode_klpd,1) IN ('D','K','L','I') AND statuspaket_umumkan = 1 AND statuspaket_delete =0 AND statuspaket_aktif =1 AND status_pdn =1 AND flag_swakelola =0;
+
+--staging_lkpp.prep_pelaksanaan_tender;
+SELECT
+    kd_tender AS kode_tender,
+    kd_penyedia AS kode_penyedia,
+    nama_penyedia AS nama_penyedia,
+    kd_lpse AS kode_lpse,
+    tahun_anggaran,
+    nilai_kontrak,
+    nilai_pdn_kontrak,
+    kd_rup_paket AS kode_rup,
+    kd_klpd AS kode_klpd_spse,
+    kd_satker AS kode_satker_spse,
+    MONTH(CAST(tgl_penetapan_pemenang AS datetime)) AS bln_penetapan,
+    YEAR(CAST(tgl_penetapan_pemenang AS datetime)) AS thn_penetapan,
+    1 AS flag_kontrak,
+    1 AS flag_tender,
+    0 AS flag_swakelola,
+    CASE
+        WHEN kd_satker REGEXP '(.*;)' THEN 1
+        ELSE 0
+    END AS flag_konsolidasi,
+    CURRENT_TIMESTAMP() AS inserted_date
+FROM
+    raw_lkpp.isb_tender_selesai_detail_spse;
+
+--staging_lkpp.prep_pelaksanaan_non_tender;
+SELECT
+    kd_nontender AS kode_tender,
+    kd_penyedia AS kode_penyedia,
+    nama_penyedia AS nama_penyedia,
+    kd_lpse AS kode_lpse,
+    tahun_anggaran,
+    nilai_kontrak,
+    nilai_pdn_kontrak,
+    kd_rup_paket AS kode_rup,
+    kd_klpd AS kode_klpd_spse,
+    kd_satker AS kode_satker_spse,
+    MONTH(CAST(tanggal_pengumuman_nontender AS datetime)) AS bln_penetapan,
+    YEAR(CAST(tanggal_pengumuman_nontender AS datetime)) AS thn_penetapan,
+    1 AS flag_kontrak,
+    0 AS flag_tender,
+    0 AS flag_swakelola,
+    CASE
+        WHEN kd_satker REGEXP '(.*;)' THEN 1
+        ELSE 0
+    END AS flag_konsolidasi,
+    CURRENT_TIMESTAMP() AS inserted_date
+FROM
+    raw_lkpp.isb_non_tender_selesai_detail_spse;
+	
+--staging_lkpp.prep_pelaksanaan_swakelola;
+SELECT a.kd_swakelola_pct  as  kode_swakelola , a.kd_lpse as kode_lpse  , a.kd_klpd as kode_klpd_spse , a.kd_satker_str as kode_satker_spse,
+o.nama_penyedia,
+a.total_realisasi as  nilai_swakelola  , a.nilai_pdn_pct as nilai_pdn_swakelola ,
+a.nilai_umk_pct as nilai_umk_swakelola,
+a.tahun_anggaran,
+a.kd_rup_paket as kode_rup,
+MONTH(CAST(tgl_mulai_paket  AS datetime)) as bln_penetapan,
+YEAR(CAST(tgl_mulai_paket  AS datetime)) as thn_penetapan,
+0 as flag_kontrak,
+0 as flag_tender,
+1 as flag_swakelola,
+CASE WHEN kd_satker_str REGEXP '(.*;)' THEN 1 ELSE 0 END as flag_konsolidasi, CURRENT_TIMESTAMP() AS inserted_date 
+FROM (SELECT DISTINCT kd_swakelola_pct,kd_lpse,kd_klpd,kd_satker_str,total_realisasi,nilai_pdn_pct,nilai_umk_pct,tahun_anggaran,kd_rup_paket,tgl_mulai_paket FROM raw_lkpp.isb_pencatatan_swakelola_spse WHERE total_realisasi IS NOT NULL AND kd_klpd IS NOT NULL) a
+LEFT JOIN
+(SELECT DISTINCT kd_swakelola_pct as kode_swakelola  ,GROUP_CONCAT(IFNULL(nama_penyedia,nama_non_penyedia)) as nama_penyedia FROM raw_lkpp.isb_pencatatan_swakelola_realisasi_spse GROUP BY 1) o
+ON a.kd_swakelola_pct = o.kode_swakelola;
+
+--staging_lkpp.prep_pelaksanaan_pencatatan;
+SELECT a.kd_nontender_pct  as  kode_pencatatan , a.kd_lpse as kode_lpse  , a.kd_klpd as kode_klpd_spse , a.kd_satker_str as kode_satker_spse,
+o.nama_penyedia, a.total_realisasi as  nilai_pencatatan , a.nilai_pdn_pct as nilai_pdn_pencatatan,
+a.nilai_umk_pct as nilai_umk_pencatatan,
+a.tahun_anggaran,
+a.kd_rup_paket as kode_rup,
+MONTH(CAST(a.tgl_mulai_paket  AS datetime)) as bln_penetapan,
+YEAR(CAST(a.tgl_mulai_paket  AS datetime)) as thn_penetapan,
+0 as flag_kontrak,
+0 as flag_tender,
+0 as flag_swakelola,
+CASE WHEN kd_satker_str REGEXP '(.*;)' THEN 1 ELSE 0 END as flag_konsolidasi, CURRENT_TIMESTAMP() AS inserted_date 
+FROM
+(SELECT DISTINCT kd_nontender_pct,kd_lpse,kd_klpd,kd_satker_str,total_realisasi,nilai_pdn_pct,nilai_umk_pct,tahun_anggaran,kd_rup_paket,tgl_mulai_paket FROM raw_lkpp.isb_pencatatan_non_tender_spse WHERE total_realisasi IS NOT NULL AND kd_klpd IS NOT NULL) a
+LEFT JOIN
+(SELECT DISTINCT kd_nontender_pct as kode_pencatatan  ,GROUP_CONCAT(IFNULL(nama_penyedia,nama_non_penyedia)) as nama_penyedia FROM raw_lkpp.isb_pencatatan_non_tender_realisasi_spse GROUP BY 1) o
+ON a.kd_nontender_pct = o.kode_pencatatan;
+
+--staging_lkpp.prep_pelaksanaan_padi;
+SELECT
+    po_number AS kode_transaksi_padi,
+    bumnid AS kode_klpd_padi,
+    buyer_group_id AS kode_satker_padi,
+    nilai_project,
+    IF(is_PDN = 1, nilai_project, 0) AS nilai_pdn_project,
+    umkm_id AS kode_penyedia,
+    umkm_name AS nama_penyedia,
+    YEAR(CAST(po_date AS datetime)) AS tahun_anggaran,
+    MONTH(CAST(po_date AS datetime)) AS bln_transaksi,
+    YEAR(CAST(po_date AS datetime)) AS thn_transaksi,
+    0 AS flag_kontrak,
+    0 AS flag_tender,
+    0 AS flag_swakelola,
+    0 AS flag_konsolidasi,
+    CURRENT_TIMESTAMP() AS inserted_date
+FROM
+    raw_lkpp.padi_transaksi
+WHERE
+    STATUS NOT IN ('Dibatalkan', 'Ditolak Penjual');
+
+--staging_lkpp.prep_pelaksanaan_ecatalog;
+SELECT no_paket as kode_paket,tahun_anggaran,kd_klpd as kode_klpd_sirup,satker_id as id_satker_sirup,kd_rup as kode_rup,kd_produk as kode_produk,
+a.total_harga as harga_kontrak,
+CASE WHEN b.jenis_produk='lokal' THEN a.total_harga ELSE 0 END as harga_pdn_kontrak,
+a.kd_penyedia as kode_penyedia, c.nama_penyedia,
+MONTH(CAST(tanggal_edit_paket as datetime)) as bln_penetapan,
+YEAR(CAST(tanggal_edit_paket as datetime)) as thn_penetapan,
+0 as flag_kontrak,
+0 as flag_tender,
+0 as flag_swakelola,
+0 as flag_konsolidasi,CURRENT_TIMESTAMP() AS inserted_date 
+from raw_lkpp.isb_ecat_paket_epurchasing a
+left join raw_lkpp.ecat_db_produk b
+on a.kd_produk=b.id
+left join (SELECT DISTINCT kd_penyedia , nama_penyedia FROM  raw_lkpp.isb_ecat_penyedia_detail) c
+on a.kd_penyedia = c.kd_penyedia;
+
+--staging_lkpp.prep_pelaksanaan_tokodaring;
+	SELECT
+    order_id,
+    kd_klpd AS kode_klpd_sirup,
+    kd_satker AS kode_satker_sirup,
+    YEAR(CAST(tanggal_transaksi AS datetime)) AS tahun_anggaran,
+    YEAR(CAST(tanggal_transaksi AS datetime)) AS thn_penetapan,
+    MONTH(CAST(tanggal_transaksi AS datetime)) AS bln_penetapan,
+    valuasi AS nilai_pelaksanaan,
+    valuasi AS nilai_pdn_pelaksanaan,
+    nama_merchant AS nama_penyedia,
+    0 AS flag_kontrak,
+    0 AS flag_tender,
+    0 AS flag_swakelola,
+    0 AS flag_konsolidasi,
+    CURRENT_TIMESTAMP() AS inserted_date
+FROM
+    raw_lkpp.isb_toko_daring_realisasi;
+
+--staging_lkpp.prep_pelaksanaan_siswas;
+SELECT * FROM raw_lkpp.siswas_pelaksanaan WHERE tahun_anggaran=2022 AND LEFT(kode_klpd,1) IN ('D','K','L','I') AND flag_swakelola =0;
+
+--staging_lkpp.prep_pembayaran_tender;
+SELECT
+    a.*,
+    b.kd_klpd AS kode_klpd_spse,
+    b.kd_satker AS kode_satker_spse,
+    IF(c.flag_pdn = 1, a.nilai_pembayaran, 0) AS nilai_pdn_pembayaran,
+    1 AS flag_kontrak,
+    1 AS flag_tender,
+    0 AS flag_swakelola,
+    0 AS flag_konsolidasi,
+    CURRENT_TIMESTAMP() AS inserted_date
+FROM
+    (
+        SELECT
+            kd_tender AS kode_tender,
+            kd_lpse AS kode_lpse,
+            kd_penyedia AS kode_penyedia,
+            nama_penyedia,
+            tahun_anggaran,
+            nilai_kontrak,
+            no_bap,
+            tgl_bap,
+            YEAR(CAST(tgl_bap AS datetime)) AS thn_pembayaran,
+            MONTH(CAST(tgl_bap AS datetime)) AS bln_pembayaran,
+            besar_pembayaran_bap AS nilai_pembayaran
+        FROM
+            raw_lkpp.isb_tender_ekontrak_bap_bast_spse
+        WHERE
+            besar_pembayaran_bap IS NOT NULL
+    ) AS a
+    LEFT JOIN(
+        SELECT
+            DISTINCT kd_klpd,
+            kd_satker,
+            kd_tender
+        FROM
+            raw_lkpp.isb_tender_pengumuman_detail_spse
+    ) AS b ON a.kode_tender = b.kd_tender
+    LEFT JOIN(
+        SELECT
+            DISTINCT kd_tender,
+            kd_penyedia,
+            CASE
+                WHEN IFNULL(nilai_pdn_kontrak, 0) > 0 THEN 1
+                ELSE 0
+            END AS flag_pdn
+        FROM
+            raw_lkpp.isb_tender_selesai_detail_spse
+    ) AS c ON a.kode_tender = c.kd_tender
+    AND a.kode_penyedia = c.kd_penyedia
+WHERE
+    b.kd_klpd NOT LIKE 'K%'
+    AND b.kd_klpd NOT LIKE 'L%';
+
+--staging_lkpp.prep_pembayaran_non_tender;
+SELECT
+    a.*,
+    b.kd_klpd AS kode_klpd_spse,
+    b.kd_satker AS kode_satker_spse,
+    IF(c.flag_pdn = 1, a.nilai_pembayaran, 0) AS nilai_pdn_pembayaran,
+    1 AS flag_kontrak,
+    0 AS flag_tender,
+    0 AS flag_swakelola,
+    0 AS flag_konsolidasi,
+    CURRENT_TIMESTAMP() AS inserted_date
+FROM
+    (
+        SELECT
+            kd_tender AS kode_tender,
+            kd_lpse AS kode_lpse,
+            kd_penyedia AS kode_penyedia,
+            nama_penyedia,
+            tahun_anggaran,
+            nilai_kontrak,
+            no_bap,
+            tgl_bap,
+            YEAR(CAST(tgl_bap AS datetime)) AS thn_pembayaran,
+            MONTH(CAST(tgl_bap AS datetime)) AS bln_pembayaran,
+            besar_pembayaran_bap AS nilai_pembayaran
+        FROM
+            raw_lkpp.isb_non_tender_ekontrak_bap_bast_spse
+        WHERE
+            besar_pembayaran_bap IS NOT NULL
+    ) AS a
+    LEFT JOIN(
+        SELECT
+            DISTINCT kd_klpd,
+            kd_satker,
+            kd_nontender
+        FROM
+            raw_lkpp.isb_non_tender_pengumuman_detail_spse
+    ) AS b ON a.kode_tender = b.kd_nontender
+    LEFT JOIN(
+        SELECT
+            DISTINCT kd_nontender,
+            kd_penyedia,
+            CASE
+                WHEN IFNULL(nilai_pdn_kontrak, 0) > 0 THEN 1
+                ELSE 0
+            END AS flag_pdn
+        FROM
+            raw_lkpp.isb_non_tender_selesai_detail_spse
+    ) AS c ON a.kode_tender = c.kd_nontender
+    AND a.kode_penyedia = c.kd_penyedia
+WHERE
+    b.kd_klpd NOT LIKE 'K%'
+    AND b.kd_klpd NOT LIKE 'L%';
+
+--staging_lkpp.prep_pembayaran_padi;
+SELECT
+    po_number AS kode_transaksi_padi,
+    bumnid AS kode_klpd_padi,
+    buyer_group_id AS kode_satker_padi,
+    nilai_project AS nilai_pembayaran,
+    umkm_name as nama_penyedia,
+    IF(is_PDN = 1, nilai_project, 0) AS nilai_pdn_pembayaran,
+    umkm_id AS kode_penyedia,
+    YEAR(CAST(po_date AS datetime)) AS tahun_anggaran,
+    MONTH(CAST(payment_date AS datetime)) AS bln_pembayaran,
+    YEAR(CAST(payment_date AS datetime)) AS thn_pembayaran,
+    0 AS flag_kontrak,
+    0 AS flag_tender,
+    0 AS flag_swakelola,
+    0 AS flag_konsolidasi,
+    CURRENT_TIMESTAMP() AS inserted_date
+FROM
+    raw_lkpp.padi_transaksi
+WHERE
+    STATUS IN ('Pembayaran Terverifikasi', 'Selesai');
+
+--staging_lkpp.prep_pembayaran_sakti;
+SELECT
+	a.NO_SP2D as kode_sp2d,
+	b.kode_kl_sakti,
+	b.kode_eselon_sakti,
+	b.kode_satker_sakti,
+	a.THANG as tahun_anggaran,
+	a.NAMA_SUPPLIER as nama_penyedia,
+	month(str_to_date(a.TGL_SP2D , '%d-%b-%y')) as bln_pembayaran,
+	year(str_to_date(a.TGL_SP2D , '%d-%b-%y')) as thn_pembayaran,
+	IFNULL(a.NILAI_TOTAL_BARANG , 0) as nilai_pembayaran,
+	IFNULL(a.JENIS_PDN, 0) as status_pdn,
+	0 as flag_kontrak,
+	0 as flag_tender,
+	0 as flag_swakelola,
+	0 as flag_konsolidasi
+from
+	(
+	SELECT
+		*
+	FROM
+		raw_lkpp.sakti_komitmen_p3dn
+	where
+		NO_SP2D is not null
+		and NAMA_SUPPLIER is not null) a
+LEFT JOIN (
+	SELECT
+		LEFT(kode_unit,
+		3) as kode_kl_sakti,
+		LEFT(kode,
+		LENGTH(kode)-5) as kode_satker_sakti,
+		SUBSTR(kode_unit, 5, 2) as kode_eselon_sakti ,
+		deskripsi
+	FROM
+		raw_lkpp.sakti_referensi_satker
+	WHERE
+		kode like '%-2022') b
+ON
+	a.KDSATKER = b.kode_satker_sakti
+
+--staging_lkpp.prep_pembayaran_siswas;
+SELECT * FROM raw_lkpp.siswas_realisasi WHERE tahun_anggaran=2022 AND LEFT(kode_klpd,1) IN ('D','K','L','I') AND flag_swakelola =0;
+
+--staging_lkpp.perencanaan_penyedia;
+SELECT
+	n.kode_jenis_klpd_adj,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj,
+	a.kode_klpd_sirup,
+	a.id_satker_sirup,
+	a.kode_rup,
+	a.tahun_anggaran,
+	a.bln_komitmen,
+	a.thn_komitmen,
+	a.status_pdn,
+	a.status_konsolidasi,
+	a.jumlah_pagu,
+	0 as flag_swakelola
+FROM
+	staging_lkpp.prep_perencanaan_penyedia a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_sirup IS NOT NULL) n
+ON
+	a.kode_klpd_sirup = n.kode_klpd_sirup
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup,
+		id_satker_sirup,
+		kode_eselon_adj,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		id_satker_sirup IS NOT NULL) m
+ON
+	a.kode_klpd_sirup = m.kode_klpd_sirup
+	AND a.id_satker_sirup = m.id_satker_sirup;
+
+--staging_lkpp.perencanaan_swakelola;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.kode_klpd_sirup,
+	a.id_satker_sirup,
+	a.kode_rup,
+	a.tahun_anggaran,
+	a.bln_komitmen,
+	a.thn_komitmen,
+	a.status_pdn,
+	a.status_konsolidasi,
+	a.jumlah_pagu,
+	1 as flag_swakelola
+FROM
+	staging_lkpp.prep_perencanaan_swakelola a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_sirup IS NOT NULL) n
+ON
+	a.kode_klpd_sirup = n.kode_klpd_sirup
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup ,
+		id_satker_sirup,
+		kode_eselon_adj,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		id_satker_sirup IS NOT NULL) m
+ON
+	a.kode_klpd_sirup = m.kode_klpd_sirup
+	AND a.id_satker_sirup = m.id_satker_sirup;
+
+--staging_lkpp.perencanaan_siswas;
+SELECT  d.kode_jenis_klpd_adj , d.kode_klpd_adj, e.kode_eselon_adj, e.kode_satker_adj , a.kode_klpd as kode_klpd_siswas, a.kode_satker as kode_satker_siswas, 
+a.kode_rup, a.tahun_anggaran, a.bln_komitmen, a.thn_komitmen, a.status_pdn, a.statuspaketkonsolidasi as status_konsolidasi, a.jumlah_pagu
+FROM staging_lkpp.prep_perencanaan_siswas a 
+LEFT JOIN (SELECT kode_klpd_sirup , kode_jenis_klpd_adj, kode_klpd_adj FROM staging_lkpp.master_klpd_align  WHERE kode_klpd_sirup  IS NOT NULL) d 
+ON a.kode_klpd=d.kode_klpd_sirup
+LEFT JOIN (SELECT kode_klpd_sirup , kode_satker_sirup, kode_eselon_adj, kode_jenis_klpd_adj, kode_klpd_adj, kode_satker_adj FROM staging_lkpp.master_satker_align WHERE kode_satker_sirup IS NOT NULL) e 
+ON a.kode_klpd=e.kode_klpd_sirup AND a.kode_satker=e.kode_satker_sirup;
+
+--staging_lkpp.pelaksanaan_tender;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.kode_tender,
+	a.kode_klpd_spse,
+	a.kode_satker_spse,
+	a.kode_rup,
+	a.nama_penyedia,
+	a.tahun_anggaran ,
+	a.bln_penetapan ,
+	a.thn_penetapan ,
+	a.nilai_kontrak ,
+	a.nilai_pdn_kontrak ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a. flag_konsolidasi
+FROM
+	staging_lkpp.prep_pelaksanaan_tender a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_spse IS NOT NULL) n
+ON
+	a.kode_klpd_spse = n.kode_klpd_spse
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_satker_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_spse IS NOT NULL) m
+ON
+	a.kode_klpd_spse = m.kode_klpd_spse
+	AND a.kode_satker_spse = m.kode_satker_spse;
+
+--staging_lkpp.pelaksanaan_non_tender;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.kode_tender,
+	a.kode_klpd_spse,
+	a.kode_satker_spse,
+	a.kode_rup,
+	a.nama_penyedia,
+	a.tahun_anggaran ,
+	a.bln_penetapan ,
+	a.thn_penetapan ,
+	a.nilai_kontrak ,
+	a.nilai_pdn_kontrak ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a. flag_konsolidasi
+FROM
+	staging_lkpp.prep_pelaksanaan_non_tender a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_spse IS NOT NULL) n
+ON
+	a.kode_klpd_spse = n.kode_klpd_spse
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_satker_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_spse IS NOT NULL) m
+ON
+	a.kode_klpd_spse = m.kode_klpd_spse
+	AND a.kode_satker_spse = m.kode_satker_spse;
+
+--staging_lkpp.pelaksanaan_swakelola;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.nama_penyedia ,
+	a.kode_swakelola,
+	a.kode_klpd_spse,
+	a.kode_satker_spse,
+	a.tahun_anggaran ,
+	a.bln_penetapan ,
+	a.thn_penetapan ,
+	a.nilai_swakelola ,
+	a.nilai_pdn_swakelola ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a. flag_konsolidasi
+FROM
+	staging_lkpp.prep_pelaksanaan_swakelola a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_spse IS NOT NULL) n
+ON
+	a.kode_klpd_spse = n.kode_klpd_spse
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_satker_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_spse IS NOT NULL) m
+ON
+	a.kode_klpd_spse = m.kode_klpd_spse
+	AND a.kode_satker_spse = m.kode_satker_spse;
+	
+--staging_lkpp.pelaksanaan_pencatatan;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.nama_penyedia ,
+	a.kode_pencatatan,
+	a.kode_klpd_spse,
+	a.kode_satker_spse,
+	a.tahun_anggaran ,
+	a.bln_penetapan ,
+	a.thn_penetapan ,
+	a.nilai_pencatatan ,
+	a.nilai_pdn_pencatatan ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a. flag_konsolidasi
+FROM
+	staging_lkpp.prep_pelaksanaan_pencatatan a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_spse IS NOT NULL) n
+ON
+	a.kode_klpd_spse = n.kode_klpd_spse
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_satker_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_spse IS NOT NULL) m
+ON
+	a.kode_klpd_spse = m.kode_klpd_spse
+	AND a.kode_satker_spse = m.kode_satker_spse;
+
+--staging_lkpp.pelaksanaan_padi;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.nama_penyedia ,
+	a.kode_transaksi_padi,
+	a.kode_klpd_padi,
+	a.kode_satker_padi,
+	a.tahun_anggaran ,
+	a.bln_transaksi ,
+	a.thn_transaksi ,
+	a.nilai_project ,
+	a.nilai_pdn_project ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a.flag_konsolidasi
+FROM
+	staging_lkpp.prep_pelaksanaan_padi a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_padi ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_padi IS NOT NULL) n
+ON
+	a.kode_klpd_padi = n.kode_klpd_padi
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_padi ,
+		kode_satker_padi ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_padi IS NOT NULL) m
+ON
+	a.kode_klpd_padi = m.kode_klpd_padi
+	AND a.kode_satker_padi = m.kode_satker_padi;
+
+--staging_lkpp.pelaksanaan_ecatalog;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.nama_penyedia ,
+	a.kode_paket,
+	a.kode_klpd_sirup,
+	a.id_satker_sirup,
+	a.tahun_anggaran ,
+	a.bln_penetapan ,
+	a.thn_penetapan ,
+	a.harga_kontrak ,
+	a.harga_pdn_kontrak ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a.flag_konsolidasi
+FROM
+	staging_lkpp.prep_pelaksanaan_ecatalog a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_sirup IS NOT NULL) n
+ON
+	a.kode_klpd_sirup = n.kode_klpd_sirup
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup ,
+		id_satker_sirup ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		id_satker_sirup IS NOT NULL) m
+ON
+	a.kode_klpd_sirup = m.kode_klpd_sirup
+	AND a.id_satker_sirup = m.id_satker_sirup;
+	
+--staging_lkpp.pelaksanaan_tokodaring;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.nama_penyedia,
+	a.order_id ,
+	a.kode_klpd_sirup,
+	a.kode_satker_sirup,
+	a.tahun_anggaran ,
+	a.bln_penetapan ,
+	a.thn_penetapan ,
+	a.nilai_pelaksanaan ,
+	a.nilai_pdn_pelaksanaan ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a.flag_konsolidasi
+FROM
+	staging_lkpp.prep_pelaksanaan_tokodaring a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_sirup IS NOT NULL) n
+ON
+	a.kode_klpd_sirup = n.kode_klpd_sirup
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sirup ,
+		kode_satker_sirup ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_sirup IS NOT NULL) m
+ON
+	a.kode_klpd_sirup = m.kode_klpd_sirup
+	AND a.kode_satker_sirup = m.kode_satker_sirup;
+	
+--staging_lkpp.pelaksanaan_siswas;
+SELECT  d.kode_jenis_klpd_adj , d.kode_klpd_adj, e.kode_eselon_adj, e.kode_satker_adj , b.kode_klpd as kode_klpd_siswas, b.kode_satker as kode_satker_siswas, 
+b.kode_rup, b.tahun_anggaran, b.bln_pelaksanaan, b.thn_pelaksanaan, b.status_konsolidasi, b.nilai_pelaksanaan, b.nilai_pdn
+FROM staging_lkpp.prep_pelaksanaan_siswas b 
+LEFT JOIN (SELECT kode_klpd_sirup , kode_jenis_klpd_adj, kode_klpd_adj FROM staging_lkpp.master_klpd_align  WHERE kode_klpd_sirup  IS NOT NULL) d 
+ON b.kode_klpd=d.kode_klpd_sirup
+LEFT JOIN (SELECT kode_klpd_sirup , kode_satker_sirup, kode_eselon_adj, kode_jenis_klpd_adj, kode_klpd_adj, kode_satker_adj FROM staging_lkpp.master_satker_align WHERE kode_satker_sirup IS NOT NULL) e 
+ON b.kode_klpd=e.kode_klpd_sirup AND b.kode_satker=e.kode_satker_sirup;
+
+--staging_lkpp.pembayaran_tender;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.kode_tender,
+	a.no_bap,
+	a.kode_klpd_spse,
+	a.kode_satker_spse,
+	a.nama_penyedia,
+	a.tahun_anggaran ,
+	a.bln_pembayaran ,
+	a.thn_pembayaran ,
+	a.nilai_pembayaran ,
+	a.nilai_pdn_pembayaran ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a.flag_konsolidasi
+FROM
+	staging_lkpp.prep_pembayaran_tender a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_spse IS NOT NULL) n
+ON
+	a.kode_klpd_spse = n.kode_klpd_spse
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse,
+		kode_satker_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_spse IS NOT NULL) m
+ON
+	a.kode_klpd_spse = m.kode_klpd_spse
+	AND a.kode_satker_spse = m.kode_satker_spse;
+	
+--staging_lkpp.pembayaran_non_tender;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.kode_tender,
+	a.no_bap,
+	a.kode_klpd_spse,
+	a.kode_satker_spse,
+	a.nama_penyedia,
+	a.tahun_anggaran ,
+	a.bln_pembayaran ,
+	a.thn_pembayaran ,
+	a.nilai_pembayaran ,
+	a.nilai_pdn_pembayaran ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a.flag_konsolidasi
+FROM
+	staging_lkpp.prep_pembayaran_non_tender a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_spse IS NOT NULL) n
+ON
+	a.kode_klpd_spse = n.kode_klpd_spse
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_spse ,
+		kode_satker_spse ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_spse IS NOT NULL) m
+ON
+	a.kode_klpd_spse = m.kode_klpd_spse
+	AND a.kode_satker_spse = m.kode_satker_spse;
+
+--staging_lkpp.pembayaran_padi;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.kode_transaksi_padi,
+	a.kode_klpd_padi,
+	a.kode_satker_padi,
+	a.nama_penyedia,
+	a.tahun_anggaran ,
+	a.bln_pembayaran ,
+	a.thn_pembayaran ,
+	a.nilai_pembayaran ,
+	a.nilai_pdn_pembayaran ,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a.flag_konsolidasi
+FROM
+	staging_lkpp.prep_pembayaran_padi a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_padi ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_padi IS NOT NULL) n
+ON
+	a.kode_klpd_padi = n.kode_klpd_padi
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_padi ,
+		kode_satker_padi ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_padi IS NOT NULL) m
+ON
+	a.kode_klpd_padi = m.kode_klpd_padi
+	AND a.kode_satker_padi = m.kode_satker_padi;
+
+--staging_lkpp.pembayaran_sakti;
+SELECT
+	n.kode_jenis_klpd_adj ,
+	n.kode_klpd_adj,
+	m.kode_eselon_adj,
+	m.kode_satker_adj ,
+	a.kode_sp2d,
+	a.kode_kl_sakti,
+	a.kode_eselon_sakti,
+	a.kode_satker_sakti,
+	a.nama_penyedia,
+	a.tahun_anggaran ,
+	a.bln_pembayaran ,
+	a.thn_pembayaran ,
+	a.nilai_pembayaran ,
+	CASE
+		WHEN status_pdn = 1 THEN a.nilai_pembayaran
+		ELSE 0
+	END as nilai_pdn_pembayaran,
+	a.flag_kontrak,
+	a.flag_tender,
+	a.flag_swakelola,
+	a.flag_konsolidasi
+FROM
+	staging_lkpp.prep_pembayaran_sakti a
+LEFT JOIN
+(
+	SELECT
+		kode_klpd_sakti ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj
+	FROM
+		staging_lkpp.master_klpd_align
+	WHERE
+		kode_klpd_sakti IS NOT NULL) n
+ON
+	a.kode_kl_sakti = n.kode_klpd_sakti
+LEFT JOIN
+(
+	SELECT
+		kode_kl_sakti ,
+		kode_eselon_sakti,
+		kode_satker_sakti ,
+		kode_jenis_klpd_adj,
+		kode_klpd_adj,
+		kode_eselon_adj,
+		kode_satker_adj
+	FROM
+		staging_lkpp.master_satker_align
+	WHERE
+		kode_satker_sakti IS NOT NULL) m
+ON
+	a.kode_kl_sakti = m.kode_kl_sakti
+	AND a.kode_satker_sakti = m.kode_satker_sakti
+	AND a.kode_eselon_sakti = m.kode_eselon_sakti;
+
+--staging_lkpp.pembayaran_siswas;
+SELECT  d.kode_jenis_klpd_adj , d.kode_klpd_adj, e.kode_eselon_adj, e.kode_satker_adj , c.kode_klpd as kode_klpd_siswas, c.kode_satker as kode_satker_siswas, 
+c.kode_rup, c.tahun_anggaran, c.bln_pembayaran, c.thn_pembayaran, c.status_konsolidasi, c.nilai_pelaksanaan as nilai_pembayaran, c.nilai_pdn
+FROM staging_lkpp.prep_pembayaran_siswas c 
+LEFT JOIN (SELECT kode_klpd_sirup , kode_jenis_klpd_adj, kode_klpd_adj FROM staging_lkpp.master_klpd_align  WHERE kode_klpd_sirup  IS NOT NULL) d 
+ON c.kode_klpd=d.kode_klpd_sirup
+LEFT JOIN (SELECT kode_klpd_sirup , kode_satker_sirup, kode_eselon_adj, kode_jenis_klpd_adj, kode_klpd_adj, kode_satker_adj FROM staging_lkpp.master_satker_align WHERE kode_satker_sirup IS NOT NULL) e 
+ON c.kode_klpd=e.kode_klpd_sirup AND c.kode_satker=e.kode_satker_sirup;
+
+--staging_lkpp.perencanaan_bysatker;
+SELECT tahun_anggaran, a.kode_jenis_klpd_adj , a.kode_klpd_adj , a.kode_satker_adj, a.kode_eselon_adj,
+SUM(CASE WHEN a.flag_swakelola=0 AND is_siswas=0 THEN a.jumlah_pagu ELSE 0 END) as anggaran_penyedia,
+SUM(CASE WHEN a.flag_swakelola=0 AND is_siswas=0 AND a.status_pdn=1 THEN a.jumlah_pagu ELSE 0 END) as pdn_penyedia,
+SUM(CASE WHEN a.flag_swakelola=1 AND is_siswas=0 THEN a.jumlah_pagu ELSE 0 END) as anggaran_swakelola,
+SUM(CASE WHEN a.flag_swakelola=1 AND is_siswas=0 AND a.status_pdn=1 THEN a.jumlah_pagu ELSE 0 END) as pdn_swakelola,
+SUM(CASE WHEN is_siswas=0 THEN a.jumlah_pagu ELSE 0 END) as total_anggaran,
+SUM(CASE WHEN a.status_pdn=1 AND is_siswas=0 THEN a.jumlah_pagu ELSE 0 END) as total_nilai_pdn,
+SUM(CASE WHEN a.status_pdn=1 AND is_siswas=1 THEN a.jumlah_pagu ELSE 0 END) as total_pdn_siswas
+FROM 
+(SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj , 0 AS flag_swakelola , jumlah_pagu , 1 AS is_siswas, status_pdn  FROM staging_lkpp.perencanaan_siswas
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj , flag_swakelola , jumlah_pagu , 0 AS is_siswas, status_pdn  FROM staging_lkpp.perencanaan_penyedia
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj , flag_swakelola , jumlah_pagu , 0 AS is_siswas, status_pdn  FROM staging_lkpp.perencanaan_swakelola) a
+GROUP BY 1,2,3,4,5;
+
+--staging_lkpp.pelaksanaan_bysatker;
+SELECT tahun_anggaran, a.kode_jenis_klpd_adj , a.kode_klpd_adj , a.kode_eselon_adj,  a.kode_satker_adj ,
+SUM(CASE WHEN a.flag_swakelola=0 AND is_siswas=0 THEN a.nilai_pelaksanaan ELSE 0 END) as anggaran_penyedia,
+SUM(CASE WHEN a.flag_swakelola=0 AND is_siswas=0 THEN a.nilai_pdn_pelaksanaan ELSE 0 END) as pdn_penyedia,
+SUM(CASE WHEN a.flag_swakelola=1 AND is_siswas=0 THEN a.nilai_pelaksanaan ELSE 0 END) as anggaran_swakelola,
+SUM(CASE WHEN a.flag_swakelola=1 AND is_siswas=0 THEN a.nilai_pdn_pelaksanaan ELSE 0 END) as pdn_swakelola,
+SUM(CASE WHEN is_siswas=0 THEN a.nilai_pelaksanaan ELSE 0 END) as total_anggaran,
+SUM(CASE WHEN is_siswas=0 THEN a.nilai_pdn_pelaksanaan ELSE 0 END) as total_nilai_pdn,
+SUM(CASE WHEN is_siswas=1 THEN a.nilai_pdn_pelaksanaan ELSE 0 END) as total_pdn_siswas
+FROM
+(SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj , 0 AS flag_swakelola ,
+nilai_pelaksanaan  as nilai_pelaksanaan, nilai_pdn  as nilai_pdn_pelaksanaan, 1 AS is_siswas
+FROM staging_lkpp.pelaksanaan_siswas
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj , flag_swakelola ,
+nilai_kontrak as nilai_pelaksanaan, nilai_pdn_kontrak as nilai_pdn_pelaksanaan, 0 AS is_siswas
+FROM staging_lkpp.pelaksanaan_tender
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj, kode_eselon_adj , kode_satker_adj , flag_swakelola ,
+nilai_kontrak as nilai_pelaksanaan, nilai_pdn_kontrak as nilai_pdn_pelaksanaan, 0 AS is_siswas
+FROM staging_lkpp.pelaksanaan_non_tender
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj, kode_eselon_adj , kode_satker_adj , flag_swakelola ,
+nilai_swakelola  as nilai_pelaksanaan, nilai_pdn_swakelola  as nilai_pdn_pelaksanaan, 0 AS is_siswas
+FROM staging_lkpp.pelaksanaan_swakelola
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj, kode_eselon_adj , kode_satker_adj , flag_swakelola ,
+nilai_pencatatan  as nilai_pelaksanaan, nilai_pdn_pencatatan  as nilai_pdn_pelaksanaan, 0 AS is_siswas
+FROM staging_lkpp.pelaksanaan_pencatatan
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj, kode_eselon_adj , kode_satker_adj , flag_swakelola ,
+nilai_pelaksanaan  as nilai_pelaksanaan, nilai_pdn_pelaksanaan  as nilai_pdn_pelaksanaan, 0 AS is_siswas
+FROM staging_lkpp.pelaksanaan_tokodaring
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj, kode_eselon_adj , kode_satker_adj , flag_swakelola ,
+harga_kontrak  as nilai_pelaksanaan, harga_pdn_kontrak  as nilai_pdn_pelaksanaan, 0 AS is_siswas
+FROM staging_lkpp.pelaksanaan_ecatalog
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj, kode_eselon_adj , kode_satker_adj , flag_swakelola ,
+nilai_project  as nilai_pelaksanaan, nilai_pdn_project  as nilai_pdn_pelaksanaan, 0 AS is_siswas
+FROM staging_lkpp.pelaksanaan_padi) a
+GROUP BY 1,2,3,4,5;
+
+--staging_lkpp.pembayaran_bysatker;
+SELECT tahun_anggaran, a.kode_jenis_klpd_adj , a.kode_klpd_adj , a.kode_eselon_adj, a.kode_satker_adj , 
+SUM(CASE WHEN a.flag_swakelola=0 AND is_siswas=0 THEN a.nilai_pembayaran ELSE 0 END) as anggaran_penyedia,
+SUM(CASE WHEN a.flag_swakelola=0 AND is_siswas=0 THEN a.nilai_pdn_pembayaran ELSE 0 END) as pdn_penyedia,
+SUM(CASE WHEN a.flag_swakelola=1 AND is_siswas=0 THEN a.nilai_pembayaran ELSE 0 END) as anggaran_swakelola,
+SUM(CASE WHEN a.flag_swakelola=1 AND is_siswas=0 THEN a.nilai_pdn_pembayaran ELSE 0 END) as pdn_swakelola,
+SUM(CASE WHEN is_siswas=0 THEN a.nilai_pembayaran ELSE 0 END) as total_anggaran,
+SUM(CASE WHEN is_siswas=0 THEN a.nilai_pdn_pembayaran ELSE 0 END) as total_nilai_pdn,
+SUM(CASE WHEN is_siswas=1 THEN a.nilai_pdn_pembayaran ELSE 0 END) as total_pdn_siswas,
+SUM(CASE WHEN is_siswas=1 THEN a.nilai_pembayaran ELSE 0 END) as total_anggaran_siswas
+FROM 
+(SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj , kode_eselon_adj, kode_satker_adj , 0 AS flag_swakelola , 
+nilai_pembayaran  as nilai_pembayaran , nilai_pdn  as nilai_pdn_pembayaran, 1 AS is_siswas
+FROM staging_lkpp.pembayaran_siswas
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj , kode_eselon_adj, kode_satker_adj , flag_swakelola , 
+nilai_pembayaran  as nilai_pembayaran , nilai_pdn_pembayaran  as nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_tender
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj , kode_eselon_adj, kode_satker_adj , flag_swakelola , 
+nilai_pembayaran  as nilai_pembayaran , nilai_pdn_pembayaran  as nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_non_tender
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj , kode_eselon_adj, kode_satker_adj , flag_swakelola , 
+nilai_pembayaran  as nilai_pembayaran , nilai_pdn_pembayaran  as nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_padi
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj , kode_eselon_adj, kode_satker_adj , flag_swakelola , 
+nilai_pembayaran  as nilai_pembayaran , nilai_pdn_pembayaran  as nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_sakti) a
+GROUP BY 1,2,3,4,5;
+
+--staging_lkpp.penyerapan_pdn_komitmen_bymonth;
+SELECT a.tahun_anggaran ,a.bln_komitmen, a.kode_jenis_klpd_adj , a.kode_klpd_adj , a.kode_satker_adj, a.kode_eselon_adj,
+SUM(CASE WHEN a.status_pdn=1 AND is_siswas=0 THEN a.jumlah_pagu ELSE 0 END) as nilai_pdn,
+SUM(CASE WHEN a.status_pdn=1 AND is_siswas=1 THEN a.jumlah_pagu ELSE 0 END) as nilai_pdn_siswas
+FROM
+(SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj ,thn_komitmen, bln_komitmen , jumlah_pagu , 1 AS is_siswas, status_pdn  FROM staging_lkpp.perencanaan_siswas
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj , thn_komitmen, bln_komitmen , jumlah_pagu , 0 AS is_siswas, status_pdn  FROM staging_lkpp.perencanaan_penyedia
+UNION ALL
+SELECT tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj , thn_komitmen, bln_komitmen , jumlah_pagu , 0 AS is_siswas, status_pdn  FROM staging_lkpp.perencanaan_swakelola) a
+WHERE a.bln_komitmen IS NOT NULL
+GROUP BY 1,2,3,4,5,6;
+
+--staging_lkpp.penyerapan_pdn_realisasi_bymonth;
+SELECT a.thn_pembayaran as thn_bayar ,a.bln_pembayaran as bln_bayar, a.kode_jenis_klpd_adj , a.kode_klpd_adj , a.kode_satker_adj,
+a.kode_eselon_adj, SUM(CASE WHEN is_siswas=0 THEN a.nilai_pdn_pembayaran ELSE 0 END) as nilai_pdn,SUM(CASE WHEN is_siswas=1 THEN a.nilai_pdn_pembayaran ELSE 0 END) as nilai_pdn_siswas
+FROM
+(SELECT thn_pembayaran , bln_pembayaran , kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj , kode_eselon_adj ,
+nilai_pdn as nilai_pdn_pembayaran, 1 AS is_siswas
+FROM staging_lkpp.pembayaran_siswas
+UNION ALL
+SELECT thn_pembayaran , bln_pembayaran , kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj , kode_eselon_adj ,
+nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_tender
+UNION ALL
+SELECT thn_pembayaran , bln_pembayaran , kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj , kode_eselon_adj ,
+nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_non_tender
+UNION ALL
+SELECT thn_pembayaran , bln_pembayaran , kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj , kode_eselon_adj ,
+nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_padi
+UNION ALL
+SELECT thn_pembayaran , bln_pembayaran , kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj , kode_eselon_adj ,
+nilai_pdn_pembayaran, 0 AS is_siswas
+FROM staging_lkpp.pembayaran_sakti) a
+WHERE a.bln_pembayaran  IS NOT NULL
+GROUP BY 1,2,3,4,5,6;
+
+--staging_lkpp.pdn_penyedia_pelaksanaan_bysatker;
+SELECT t.tahun_anggaran , t.kode_jenis_klpd_adj, t.kode_klpd_adj,t.kode_eselon_adj, t.kode_satker_adj, t.nama_penyedia,
+SUM(IFNULL(t.nilai_pdn,0)) as total_pdn
+FROM 
+(SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  ,kode_eselon_adj, kode_satker_adj  ,
+nama_penyedia  , nilai_pdn_kontrak  as nilai_pdn FROM staging_lkpp.pelaksanaan_tender  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_kontrak  as nilai_pdn FROM staging_lkpp.pelaksanaan_non_tender  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_swakelola  as nilai_pdn FROM staging_lkpp.pelaksanaan_swakelola WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_pencatatan  as nilai_pdn FROM staging_lkpp.pelaksanaan_pencatatan  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , harga_pdn_kontrak  as nilai_pdn FROM staging_lkpp.pelaksanaan_ecatalog WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_pelaksanaan  as nilai_pdn FROM staging_lkpp.pelaksanaan_tokodaring  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_project  as nilai_pdn FROM staging_lkpp.pelaksanaan_padi  WHERE nama_penyedia  is not null) t
+GROUP BY 1,2,3,4,5,6;
+
+--staging_lkpp.pdn_penyedia_pembayaran_bysatker;
+SELECT t.tahun_anggaran , t.kode_jenis_klpd_adj, t.kode_klpd_adj,t.kode_eselon_adj, t.kode_satker_adj, t.nama_penyedia,
+SUM(IFNULL(t.nilai_pdn,0)) as total_pdn
+FROM 
+(SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  ,kode_eselon_adj, kode_satker_adj  ,
+nama_penyedia  , nilai_pdn_kontrak  as nilai_pdn FROM staging_lkpp.pelaksanaan_tender  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_kontrak  as nilai_pdn FROM staging_lkpp.pelaksanaan_non_tender  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_swakelola  as nilai_pdn FROM staging_lkpp.pelaksanaan_swakelola WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_pencatatan  as nilai_pdn FROM staging_lkpp.pelaksanaan_pencatatan  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , harga_pdn_kontrak  as nilai_pdn FROM staging_lkpp.pelaksanaan_ecatalog WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_pelaksanaan  as nilai_pdn FROM staging_lkpp.pelaksanaan_tokodaring  WHERE nama_penyedia  is not null
+UNION ALL
+SELECT tahun_anggaran , kode_jenis_klpd_adj , kode_klpd_adj  , kode_eselon_adj, kode_satker_adj  , 
+nama_penyedia  , nilai_pdn_project  as nilai_pdn FROM staging_lkpp.pelaksanaan_padi  WHERE nama_penyedia  is not null) t
+GROUP BY 1,2,3,4,5,6;
+
+--staging_lkpp.penyerapan_pdn_bypenyedia;
+SELECT a.tahun_anggaran, a.kode_jenis_klpd_adj ,a.kode_klpd_adj,a.kode_eselon_adj, a.kode_satker_adj ,  a.nama_penyedia, IFNULL(a.total_pdn,0) as total_pdn_pelaksanaan, IFNULL(b.total_pdn,0) as total_pdn_terserap, 0 as total_pdn_terserap_siswas FROM
+staging_lkpp.pdn_penyedia_pelaksanaan_bysatker a
+LEFT JOIN
+staging_lkpp.pdn_penyedia_pembayaran_bysatker b
+ON a.nama_penyedia  = b.nama_penyedia  AND a.kode_klpd_adj = b.kode_klpd_adj AND a.kode_eselon_adj =b.kode_eselon_adj  AND a.kode_satker_adj = b.kode_satker_adj
+WHERE a.nama_penyedia IS NOT NULL;
+
+--staging_lkpp.penyerapan_pdn_bysatker;
+SELECT d.tahun_anggaran, d.kode_jenis_klpd_adj,f.nama_jenis_klpd, d.kode_klpd_adj,e.nama_klpd_adj,d.kode_eselon_adj,g.nama_eselon_adj, d.kode_satker_adj,d.nama_satker_adj, 
+IFNULL(a.total_nilai_pdn,0) as pdn_perencanaan, IFNULL(b.total_nilai_pdn,0) as pdn_pelaksanaan, IFNULL(c.total_nilai_pdn,0) as pdn_pembayaran,
+IFNULL(a.total_pdn_siswas,0) as pdn_perencanaan_siswas, IFNULL(b.total_pdn_siswas,0) as pdn_pelaksanaan_siswas, IFNULL(c.total_pdn_siswas,0) as pdn_pembayaran_siswas
+FROM
+(SELECT 2022 as tahun_anggaran, kode_jenis_klpd_adj , kode_klpd_adj ,kode_eselon_adj, kode_satker_adj, nama_satker_adj FROM staging_lkpp.master_satker_align) as d
+LEFT JOIN
+(SELECT kode_jenis_klpd_adj , kode_klpd_adj, kode_eselon_adj, nama_eselon_adj FROM staging_lkpp.master_eselon_align) as g
+ON d.kode_jenis_klpd_adj = g.kode_jenis_klpd_adj AND d.kode_klpd_adj = g.kode_klpd_adj AND d.kode_eselon_adj  = g.kode_eselon_adj  
+LEFT JOIN
+(SELECT kode_jenis_klpd_adj , kode_klpd_adj ,  nama_klpd_adj FROM staging_lkpp.master_klpd_align ) as e
+ON d.kode_jenis_klpd_adj = e.kode_jenis_klpd_adj AND d.kode_klpd_adj = e.kode_klpd_adj
+LEFT JOIN
+(SELECT kode_jenis_klpd , nama_jenis_klpd FROM staging_lkpp.master_jenis_klpd_align) as f
+ON d.kode_jenis_klpd_adj = f.kode_jenis_klpd
+LEFT JOIN
+(SELECT kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj, total_nilai_pdn, total_pdn_siswas  FROM staging_lkpp.perencanaan_bysatker WHERE kode_jenis_klpd_adj IS NOT NULL) as a
+ON d.kode_jenis_klpd_adj = a.kode_jenis_klpd_adj AND d.kode_klpd_adj = a.kode_klpd_adj AND d.kode_satker_adj = a.kode_satker_adj
+LEFT JOIN
+(SELECT kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj, total_nilai_pdn, total_pdn_siswas  FROM staging_lkpp.pelaksanaan_bysatker WHERE kode_jenis_klpd_adj  IS NOT NULL) as b
+ON d.kode_jenis_klpd_adj = b.kode_jenis_klpd_adj AND d.kode_klpd_adj = b.kode_klpd_adj AND d.kode_satker_adj = b.kode_satker_adj
+LEFT JOIN
+(SELECT kode_jenis_klpd_adj , kode_klpd_adj , kode_satker_adj, total_nilai_pdn, total_pdn_siswas FROM staging_lkpp.pembayaran_bysatker WHERE kode_jenis_klpd_adj IS NOT NULL) as c
+ON d.kode_jenis_klpd_adj = c.kode_jenis_klpd_adj AND d.kode_klpd_adj = c.kode_klpd_adj AND d.kode_satker_adj = c.kode_satker_adj;
+
+--staging_lkpp.statusimpor_bysatker;
+SELECT f.kode_jenis_klpd_adj, f.kode_klpd_adj, f.kode_eselon_adj , f.kode_satker_adj , f.tahun_anggaran,
+IFNULL(a.total_impor,0) as impor_perencanaan, IFNULL(b.total_impor,0) as impor_pelaksanaan, IFNULL(c.total_impor,0) as impor_realisasi, IFNULL(c.total_impor_siswas,0) as impor_realisasi_siswas, 
+d.nama_klpd_adj as nama_klpd,e.nama_eselon_adj as nama_eselon,f.nama_satker_adj as nama_satker,
+IFNULL(a.total_perencanaan_penyedia,0) AS total_perencanaan_penyedia,IFNULL(b.total_pelaksanaan_penyedia, 0) as total_pelaksanaan_penyedia,IFNULL(c.total_realisasi_penyedia,0) as total_realisasi_penyedia,IFNULL(c.total_realisasi_penyedia_siswas,0) as total_realisasi_penyedia_siswas
+FROM 
+(SELECT kode_jenis_klpd_adj, kode_klpd_adj, kode_eselon_adj, kode_satker_adj, nama_satker_adj, 2022 as tahun_anggaran FROM staging_lkpp.master_satker_align WHERE kode_satker_adj is not null) f
+LEFT JOIN (SELECT kode_jenis_klpd_adj, kode_klpd_adj, kode_eselon_adj , kode_satker_adj , tahun_anggaran , (anggaran_penyedia - pdn_penyedia) as total_impor, anggaran_penyedia as total_perencanaan_penyedia  FROM staging_lkpp.perencanaan_bysatker) a 
+ON f.kode_jenis_klpd_adj = a.kode_jenis_klpd_adj AND f.kode_klpd_adj=a.kode_klpd_adj AND f.kode_eselon_adj = a.kode_eselon_adj AND f.kode_satker_adj=a.kode_satker_adj AND f.tahun_anggaran=a.tahun_anggaran 
+LEFT JOIN (SELECT kode_jenis_klpd_adj, kode_klpd_adj, kode_eselon_adj , kode_satker_adj , tahun_anggaran , (anggaran_penyedia - pdn_penyedia) as total_impor, anggaran_penyedia as total_pelaksanaan_penyedia  FROM staging_lkpp.pelaksanaan_bysatker) b 
+ON f.kode_jenis_klpd_adj = b.kode_jenis_klpd_adj AND f.kode_klpd_adj=b.kode_klpd_adj AND f.kode_eselon_adj = b.kode_eselon_adj AND f.kode_satker_adj=b.kode_satker_adj AND f.tahun_anggaran = b.tahun_anggaran
+LEFT JOIN (SELECT kode_jenis_klpd_adj, kode_klpd_adj, kode_eselon_adj , kode_satker_adj , tahun_anggaran , (anggaran_penyedia - pdn_penyedia) as total_impor, (total_anggaran_siswas - total_pdn_siswas) as total_impor_siswas, total_anggaran_siswas as total_realisasi_penyedia_siswas, anggaran_penyedia as total_realisasi_penyedia  FROM staging_lkpp.pembayaran_bysatker) c 
+ON f.kode_jenis_klpd_adj = c.kode_jenis_klpd_adj AND f.kode_klpd_adj=c.kode_klpd_adj AND f.kode_eselon_adj = c.kode_eselon_adj AND f.kode_satker_adj=c.kode_satker_adj AND f.tahun_anggaran = c.tahun_anggaran
+LEFT JOIN (SELECT kode_klpd_adj , nama_klpd_adj FROM staging_lkpp.master_klpd_align) d 
+ON f.kode_klpd_adj=d.kode_klpd_adj
+LEFT JOIN (SELECT kode_eselon_adj , nama_eselon_adj FROM staging_lkpp.master_eselon_align) e 
+ON f.kode_eselon_adj=e.kode_eselon_adj;
